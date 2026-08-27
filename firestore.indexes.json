@@ -1,0 +1,47 @@
+{
+  "indexes": [
+    { "collectionGroup": "products", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] },
+    { "collectionGroup": "bids", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "roundId", "order": "ASCENDING" }, { "fieldPath": "amountCents", "order": "DESCENDING" }] },
+    { "collectionGroup": "campaignDailyStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "campaignId", "order": "ASCENDING" }, { "fieldPath": "date", "order": "ASCENDING" }] },
+    { "collectionGroup": "productDailyStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "productId", "order": "ASCENDING" }, { "fieldPath": "date", "order": "ASCENDING" }] },
+    { "collectionGroup": "productClaims", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "productId", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }] },
+    { "collectionGroup": "productMembers", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "userId", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "brawls", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "startsAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "brawls", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "endsAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "brawls", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "categoryId", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "startsAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "brawls", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "seasonId", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "brawls", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "bossBrawl", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "brawlChallenges", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "challengedOwnerId", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "brawlChallenges", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "challengerUserId", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "brawlPredictions", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "userId", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "brawlPredictions", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "brawlId", "order": "ASCENDING" }, { "fieldPath": "correct", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "seasonProductStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "seasonId", "order": "ASCENDING" }, { "fieldPath": "points", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "seasonProductStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "seasonId", "order": "ASCENDING" }, { "fieldPath": "categoryId", "order": "ASCENDING" }, { "fieldPath": "points", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "seasonProductStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "seasonId", "order": "ASCENDING" }, { "fieldPath": "categoryId", "order": "ASCENDING" }, { "fieldPath": "division", "order": "ASCENDING" }, { "fieldPath": "points", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "brawlBounties", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "categoryId", "order": "ASCENDING" }, { "fieldPath": "endsAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "activityEvents", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "activityEvents", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "visibility", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "activityEvents", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "productId", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "activityEvents", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "userId", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "activityEvents", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "userId", "order": "ASCENDING" }, { "fieldPath": "visibility", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "products", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "searchTerms", "arrayConfig": "CONTAINS" }] }
+    ,{ "collectionGroup": "leaderboardRounds", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "endsAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "leaderboardRounds", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "startsAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "bids", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "roundId", "order": "ASCENDING" }, { "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "amountCents", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "campaigns", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "expiresAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "campaignDailyStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "date", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "productCompetitiveStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "categoryId", "order": "ASCENDING" }, { "fieldPath": "isBoss", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "users", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "notifications", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "read", "order": "ASCENDING" }, { "fieldPath": "createdAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "dailyPicks", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "date", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "dailyQuestInstances", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "date", "order": "ASCENDING" }, { "fieldPath": "type", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "questTemplates", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "active", "order": "ASCENDING" }, { "fieldPath": "version", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "campaignDailyPlacementStats", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "campaignId", "order": "ASCENDING" }, { "fieldPath": "date", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "notificationDeliveries", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "status", "order": "ASCENDING" }, { "fieldPath": "nextAttemptAt", "order": "ASCENDING" }] }
+    ,{ "collectionGroup": "brawlVoteWindows", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "brawlId", "order": "ASCENDING" }, { "fieldPath": "bucketStart", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "productAchievements", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "productId", "order": "ASCENDING" }, { "fieldPath": "earnedAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "userAchievements", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "userId", "order": "ASCENDING" }, { "fieldPath": "earnedAt", "order": "DESCENDING" }] }
+    ,{ "collectionGroup": "adminAuditLogs", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "createdAt", "order": "DESCENDING" }] }
+  ],
+  "fieldOverrides": []
+}

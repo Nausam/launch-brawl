@@ -1,0 +1,26 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft, ArrowUpRight, Crown, Flame } from "lucide-react";
+import { notFound } from "next/navigation";
+import { findCategoryBySlug, getProductsByIds } from "@/lib/repositories/catalog";
+import { getLeagueStandings, getProductCompetitiveStats } from "@/lib/repositories/competitive";
+import { PageContainer } from "@/components/layout/PageContainer";
+import { Pill } from "@/components/ui/Pill";
+
+export const dynamic = "force-dynamic";
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const category = await findCategoryBySlug(slug); return { title: category ? `${category.name} League` : "League" }; }
+
+export default async function LeaguePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const category = await findCategoryBySlug(slug);
+  if (!category) notFound();
+  const standings = await getLeagueStandings(slug);
+  const products = await getProductsByIds(standings.map((standing) => standing.productId));
+  const byId = new Map(products.map((product) => [product.id, product]));
+  const stats = await Promise.all(products.map(async (product) => [product.id, await getProductCompetitiveStats(product.id)] as const));
+  const statsById = new Map(stats);
+  const bossEntry = standings.find((standing) => statsById.get(standing.productId)?.isBoss) ?? standings[0];
+  const boss = bossEntry ? byId.get(bossEntry.productId) : undefined;
+  return <PageContainer><Link href="/leagues" className="inline-flex items-center gap-2 text-xs font-bold text-muted"><ArrowLeft size={14} />All leagues</Link><div className="mt-8 flex flex-wrap items-end justify-between gap-5 border-b border-line pb-7"><div><div className="eyebrow text-coral">Organic league</div><h1 className="display mt-3 text-5xl font-black sm:text-7xl">{category.icon} {category.name}</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-muted">{category.description} Placement reflects Brawl results only.</p></div><Pill tone="blue">{standings.length} products</Pill></div>{boss && <section className="mt-8 flex flex-wrap items-center gap-4 border-2 border-ink bg-ink p-5 text-white"><Crown className="text-coral" size={24} /><div><div className="eyebrow text-white/50">{category.name} League Boss</div><p className="mt-1 text-lg font-black">{boss.name}</p></div><span className="ml-auto text-xs font-bold text-white/65">{bossEntry?.ratingCurrent ?? "—"} rating · {bossEntry?.streak ?? 0} streak</span></section>}<section className="mt-10"><div className="flex items-end justify-between border-b border-line pb-4"><div><div className="eyebrow text-coral">Standings</div><h2 className="display mt-2 text-3xl font-black">The ladder</h2></div><span className="text-xs text-muted">Promotion and relegation settle at season rollover.</span></div>{standings.length ? <div className="mt-4 grid gap-2">{standings.map((standing) => { const product = byId.get(standing.productId); if (!product) return null; return <Link key={standing.id} href={`/product/${product.slug}`} className="grid gap-3 border border-line bg-paper px-4 py-4 transition hover:border-coral sm:grid-cols-[54px_1fr_110px_95px_80px_80px_80px] sm:items-center"><span className="display text-2xl font-black">#{standing.rank}</span><span><span className="block text-sm font-black">{product.name}</span><span className="mt-1 block text-xs text-muted">{product.shortDescription}</span></span><span className="text-xs font-black text-muted">{standing.division}{standing.provisional ? " · provisional" : ""}</span><span className="text-sm font-black">{standing.ratingCurrent} <span className="text-[10px] text-muted">rating</span></span><span className="text-xs font-bold">{standing.wins}-{standing.losses}-{standing.draws}</span><span className="inline-flex items-center gap-1 text-xs font-bold">{standing.streak > 0 && <Flame size={13} className="text-coral" />}{standing.streak}</span><span className="inline-flex items-center gap-1 text-xs font-bold text-muted">{standing.movement > 0 ? "↑" : standing.movement < 0 ? "↓" : "—"} {Math.abs(standing.movement)}</span></Link>; })}</div> : <p className="mt-4 border border-dashed border-line p-10 text-center text-sm text-muted">No products have completed a Brawl in this league yet.</p>}</section><section className="mt-10 grid gap-3 md:grid-cols-3"><Link href="/brawls" className="group border border-line bg-paper p-5"><div className="eyebrow text-coral">Live Brawls</div><p className="mt-2 text-sm font-black group-hover:text-coral">See this league in action <ArrowUpRight size={14} className="ml-1 inline" /></p></Link><Link href="/seasons" className="group border border-line bg-paper p-5"><div className="eyebrow text-coral">Season points</div><p className="mt-2 text-sm font-black group-hover:text-coral">Track the current race <ArrowUpRight size={14} className="ml-1 inline" /></p></Link><Link href="/hall-of-fame" className="group border border-line bg-paper p-5"><div className="eyebrow text-coral">History</div><p className="mt-2 text-sm font-black group-hover:text-coral">See permanent records <ArrowUpRight size={14} className="ml-1 inline" /></p></Link></section></PageContainer>;
+}
+

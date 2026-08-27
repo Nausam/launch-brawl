@@ -1,0 +1,8 @@
+import Link from "next/link";
+import { Award, ArrowUpRight } from "lucide-react";
+import { formatMoney } from "@/lib/utils";
+
+export function WinnerBadge({ name, date, bidCents, winnerId, dark = false }: { name: string; date: string; bidCents: number; winnerId: string; dark?: boolean }) {
+  void winnerId;
+  return <div className={`relative overflow-hidden border p-5 ${dark ? "border-white/20 bg-ink text-white" : "border-ink bg-paper text-ink"}`}><div className="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full border-[12px] border-coral/20" /><div className="flex items-start justify-between"><div className={`flex h-10 w-10 items-center justify-center rounded-xl ${dark ? "bg-coral text-white" : "bg-coral text-white"}`}><Award size={19} /></div><span className={`eyebrow ${dark ? "text-white/55" : "text-muted"}`}>Verified winner</span></div><p className={`eyebrow mt-8 ${dark ? "text-coral" : "text-coral"}`}>#1 on Launch Brawl</p><h3 className="display mt-2 text-3xl font-black">{name}</h3><div className={`mt-5 flex items-center justify-between border-t pt-4 text-xs ${dark ? "border-white/10 text-white/55" : "border-line text-muted"}`}><span>{new Date(date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span><span className={`font-bold ${dark ? "text-white" : "text-ink"}`}>{formatMoney(bidCents)} winning bid</span></div><Link href={`/winners/${date}`} className={`mt-5 inline-flex items-center gap-1 text-xs font-bold underline decoration-coral decoration-2 underline-offset-4 ${dark ? "text-white" : "text-ink"}`}>View winner page <ArrowUpRight size={14} /></Link></div>;
+}

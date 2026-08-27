@@ -1,0 +1,19 @@
+---
+description: Do not use one-sided thick borders or edge rails on UI components
+alwaysApply: true
+---
+
+# No one-sided thick borders
+
+Do not design components with a thick accent on a single edge (left rails, `border-l-4`, `w-1.5` gradient strips, or any bar that only emphasizes one side).
+
+Use even borders on all sides, or no border. Soft fills, full rings, and equal-radius cards are fine.
+
+```tsx
+// BAD
+<div className="absolute inset-y-0 left-0 w-1.5 bg-coral" />
+<section className="border-l-4 border-coral p-4" />
+
+// GOOD
+<section className="rounded-[22px] border border-line p-6 sm:p-8" />
+```
